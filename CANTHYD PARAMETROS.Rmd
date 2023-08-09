@@ -1,0 +1,48 @@
+---
+title: "loop"
+output: html_document
+date: "2023-04-27"
+---
+
+```{bash}
+#!/bin/bash 
+
+#declarar variables
+resultado="/home/mvazquez/Mirna/05.TonyAlgas/data/06.CANTHYD/"
+modelos= "/home/mvazquez/Mirna/05.TonyAlgas/Programas/CANT-HYD-HydrocarbonBiodegradation/HMMs/concatenated\ HMMs/"
+entrada= "/home/mvazquez/Mirna/05.TonyAlgas/data/03.Proteomes/"
+
+
+#Búsqueda con parámetros (trusted cutoff)
+
+#declarar variables
+
+resultado="/home/mvazquez/Mirna/05.TonyAlgas/data/06.CANTHYD/trusted_cutoff"
+modelos="/home/mvazquez/Mirna/05.TonyAlgas/Programas/CANT-HYD-HydrocarbonBiodegradation/HMMs/concatenated_HMMs"
+entrada="/home/mvazquez/Mirna/05.TonyAlgas/data/03.Proteomes"
+
+#correr una búsqueda de hmm
+
+while read line;
+  do
+    hmmsearch --tblout ${resultado}${line}.tblout ${modelos}CANT-HYD.hmm ${entrada}${line} --cut_tc > ${resultado}${line}.out;
+  done
+
+  
+#Búsqueda con parámetros (noise_cutoff)
+
+#declarar variables
+
+resultado="/home/mvazquez/Mirna/05.TonyAlgas/data/06.CANTHYD/noise_cutoff"
+modelos="/home/mvazquez/Mirna/05.TonyAlgas/Programas/CANT-HYD-HydrocarbonBiodegradation/HMMs/concatenated_HMMs"
+entrada="/home/mvazquez/Mirna/05.TonyAlgas/data/03.Proteomes"
+
+#correr una búsqueda de hmm
+
+    while read line;
+  do
+    hmmsearch --tblout ${resultado}${line}.tblout ${modelos}CANT-HYD.hmm ${entrada}${line} --cut_nc > ${resultado}${line}.out;
+  done
+
+```
+
